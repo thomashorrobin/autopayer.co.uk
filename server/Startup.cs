@@ -30,5 +30,41 @@ namespace server
                 await context.Response.WriteAsync("Hello World!");
             });
         }
+
+        private List<Address> BuildDemoAddresses() {
+            List<Address> addresses = new List<Address>();
+            Address adressOne = new Address{ FullAddress = "38 Greenfield Gardens" };
+            Address adressTwo = new Address{ FullAddress = "Flat 38, Thornaby House" };
+            // adressOne.Leases.Add(new Leases{});
+            addresses.Add(adressOne);
+            addresses.Add(adressTwo);
+            return addresses;
+        }
+    }
+
+    class Address
+    {
+        public string FullAddress { get; set; }
+        public List<Leases> Leases { get; set; }
+    }
+
+    class Leases
+    {
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+    }
+
+    class SchedulePayments
+    {
+        public DateTime DueDate { get; set; }
+        public int Days { get; set; }
+        public double Amount { get; set; }
+        public Leases Lease { get; set; }
+    }
+    class Payments
+    {
+        public double Amount { get; set; }
+        public SchedulePayments SchedulePayments { get; set; }
+        public DateTime Date { get; set; }
     }
 }
