@@ -9,5 +9,9 @@ wss.on('connection', function connection(ws) {
     ws.send(message);
   });
  
-  ws.send(JSON.stringify(generateData()));
+  returnAllData(ws);
 });
+
+async function returnAllData(ws) {
+  ws.send(JSON.stringify(await generateData()));
+}
