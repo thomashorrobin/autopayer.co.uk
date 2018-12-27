@@ -1,17 +1,15 @@
-import dateFNS from "date-fns";
-const { addDays } = dateFNS;
+import fetch from "node-fetch";
 
 export const generateSchedualledPayments = leaseAggreement => {
-    const { startDate, intervil, endDate } = leaseAggreement;
-    let nextDate = startDate;
-    let schedualledPayments = [];
-    while (nextDate < endDate) {
-        let newPayment = {
-            from: nextDate,
-            to: addDays(nextDate, intervil - 1)
-        }
-        schedualledPayments.push(newPayment);
-        nextDate = addDays(nextDate, intervil);
+        return new Promise((resolve, reject) => {
+            fetch('http://localhost:5000/api/schedualedpaymentsmonthly', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(leaseAggreement)
+            })
+            .then(response => response.json())
+            .then(payments => resolve(payments))
+            .catch(e => reject(e));
+        });
     }
-    return schedualledPayments;
-}
+    
