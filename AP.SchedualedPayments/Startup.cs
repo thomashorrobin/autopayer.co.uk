@@ -42,7 +42,7 @@ namespace AP.SchedualedPayments
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
