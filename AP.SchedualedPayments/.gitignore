@@ -1,0 +1,7 @@
+# dependencies
+/.vs
+/bin
+/obj
+
+# misc
+.DS_Store
