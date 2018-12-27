@@ -1,8 +1,6 @@
 import { createReducer } from 'redux-starter-kit';
 
 function addAllIndividualsReducer(state, action) {
-
-    console.log(action);
     const { individuals } = action.payload
 
     return state.concat(individuals);

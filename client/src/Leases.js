@@ -1,9 +1,8 @@
 import { createReducer } from 'redux-starter-kit';
 
 function addAllLeasesReducer(state, action) {
-    const { leases } = action.payload
-
-    state.push(leases);
+    const { leases } = action.payload;
+    return state.concat(leases);
 }
 
 function addOrUpdateLeasesReducer(state, action) {
@@ -25,9 +24,11 @@ export const leasesReducer = createReducer([], {
 export const ADD_ALL_LEASES = 'ADD_ALL_LEASES';
 export const ADD_OR_UPDATE_LEASE = 'ADD_OR_UPDATE_LEASE';
 
-export const addAllLeases = lease => {
+export const addAllLeases = leases => {
     return {
         type: ADD_ALL_LEASES,
-        ...lease
+        payload: {
+            leases
+        }
     }
 }

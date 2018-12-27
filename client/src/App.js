@@ -5,10 +5,18 @@ import { connect } from 'react-redux';
 class App extends Component {
   render() {
     const individuals = this.props.individuals.map(i => <li key={i.id}>{ i.firstName }</li>);
+    const addresses = this.props.addresses.map(i => <li key={i.id}>{ i.address }</li>);
+    const leases = this.props.leases.map(i => <li key={i.id}>{ i.monthlyAmount }</li>);
     return (
       <div className="App">
         <ul>
           { individuals }
+        </ul>
+        <ul>
+          { addresses }
+        </ul>
+        <ul>
+          { leases }
         </ul>
       </div>
     );
@@ -18,7 +26,9 @@ class App extends Component {
 export default connect(
   state => {
     return {
-      individuals: state.individuals
+      individuals: state.individuals,
+      addresses: state.addresses,
+      leases: state.leases
     }
   }
 )(App);
