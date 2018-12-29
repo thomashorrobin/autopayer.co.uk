@@ -15,5 +15,6 @@
 
   <ItemGroup>
     <Compile Remove="Services\SchedualedPaymentTypes.cs" />
+    <Compile Remove="Services\InvalidSchedualExcaption.cs" />
   </ItemGroup>
 </Project>

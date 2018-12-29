@@ -10,7 +10,7 @@ namespace AP.SchedualedPayments.Services
 		{
 			if (startDate > endDate)
 			{
-				throw new InvalidSchedualTimespanExcaption(startDate, endDate);
+				throw new Exception("enddate can not be before startdate");
 			}
 
 			List<SchedualedPayment> schedualedPayments = new List<SchedualedPayment>();
