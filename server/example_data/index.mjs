@@ -1,5 +1,5 @@
 import { getIndividuals } from "./individuals.mjs";
-import { generateSchedualledPayments } from "./schedualedPayments.mjs";
+// import { generateSchedualledPayments } from "./schedualedPayments.mjs";
 
 export async function generateData() {
     let individuals = [];
@@ -13,7 +13,7 @@ export async function generateData() {
                     landlords: ['8e57e566-6a3d-4b00-9964-08f809242ed3'],
                     tenents: ['66085a23-634d-4e0e-8d6a-6dbf32a784de'],
                     startDate: new Date(2018, 11, 6), 
-                    monthlyAmount: 500, 
+                    amount: 500, 
                     endDate: new Date(2019, 11, 6)
                 }));
     leases.push(await getLeases({
@@ -22,7 +22,7 @@ export async function generateData() {
                     landlords: ['cd13940d-1103-4f19-833f-70f05853f151'],
                     tenents: ['66085a23-634d-4e0e-8d6a-6dbf32a784de', '8e57e566-6a3d-4b00-9964-08f809242ed3'],
                     startDate: new Date(2019, 4, 13), 
-                    monthlyAmount: 630, 
+                    amount: 210, 
                     endDate: new Date(2019, 11, 6)
                 }));
     return {
@@ -44,8 +44,15 @@ const addresses = [
 ]
 
 async function getLeases(leaseAggreement) {
-    const { startDate, monthlyAmount, endDate } = leaseAggreement;
-    const schedualedPayments = await generateSchedualledPayments({ startDate, monthlyAmount, endDate });
+    // const { startDate, monthlyAmount, endDate } = leaseAggreement;
+    const schedualedPayments = []; // await generateSchedualledPayments({ startDate, monthlyAmount, endDate });
     Object.assign(leaseAggreement, { schedualedPayments });
     return leaseAggreement;
 }
+
+// async function getLeasesWeekly(leaseAggreement) {
+//     const { startDate, weeklyAmount, endDate } = leaseAggreement;
+//     const schedualedPayments = await generateSchedualledPayments({ startDate, weeklyAmount, endDate });
+//     Object.assign(leaseAggreement, { schedualedPayments });
+//     return leaseAggreement;
+// }
