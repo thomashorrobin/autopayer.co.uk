@@ -17,26 +17,33 @@ namespace AP.SchedualedPayments.Controllers
 		{
 			this._schedualedPaymentsGenerator = schedualedPaymentsGenerator;
 		}
-
+        
 		[HttpPost]
-		public ActionResult<IEnumerable<SchedualedPayment>> Post([FromBody] SchedualedPaymentsRequest req)
+		public ActionResult<IEnumerable<SchedualedPayment>> Post([FromBody] SchedualedPaymentsMonthlyRequest req)
         {
 			return this._schedualedPaymentsGenerator.GenerateMonthlySchedualedPayments(req.StartDate, req.EndDate, req.MonthlyAmount).ToList();
         }
 	}
 
-  //  [Route("api/[controller]")]
-  //  [ApiController]
-  //  public class SchedualedPaymentsWeeklyController : ControllerBase
-  //  {
-  //      [HttpGet]
-		//public ActionResult<IEnumerable<SchedualedPayment>> Get(SchedualedPaymentsRequest schedualedPaymentsWeeklyRequest)
-    //    {
-    //        return new string[] { "value1", "value2" };
-    //    }
-    //}
+    [Route("api/[controller]")]
+    [ApiController]
+    public class SchedualedPaymentsWeeklyController : ControllerBase
+	{
+        private readonly ISchedualedPaymentsGenerator _schedualedPaymentsGenerator;
 
-    public class SchedualedPaymentsRequest
+		public SchedualedPaymentsWeeklyController(ISchedualedPaymentsGenerator schedualedPaymentsGenerator)
+        {
+            this._schedualedPaymentsGenerator = schedualedPaymentsGenerator;
+        }
+
+		[HttpPost]
+		public ActionResult<IEnumerable<SchedualedPayment>> Get(SchedualedPaymentsWeeklyRequest req)
+        {
+			return this._schedualedPaymentsGenerator.GenerateWeeklySchedualedPayments(req.StartDate, req.EndDate, req.WeeklyAmount).ToList();
+        }
+    }
+
+    public class SchedualedPaymentsMonthlyRequest
     {
         public DateTime StartDate
         {
@@ -56,4 +63,25 @@ namespace AP.SchedualedPayments.Controllers
 			set;
 		}
 	}
+
+    public class SchedualedPaymentsWeeklyRequest
+    {
+        public DateTime StartDate
+        {
+            get;
+            set;
+        }
+
+        public DateTime EndDate
+        {
+            get;
+            set;
+        }
+
+        public double WeeklyAmount
+        {
+            get;
+            set;
+        }
+    }
 }

@@ -21,10 +21,32 @@ namespace AP.SchedualedPayments.Services
 			{
 				var eom = floatingDate.GetLastDayOfMonth();
 				var nextEndDate = smallestDate(eom, endDate);
-				SchedualedPayment schedualedPayment = new SchedualedPayment(floatingDate, nextEndDate, calculateRent(floatingDate, nextEndDate, monthlyRent));
+				SchedualedPayment schedualedPayment = new SchedualedPayment(floatingDate, nextEndDate, calculateMonthlyRent(floatingDate, nextEndDate, monthlyRent));
 				schedualedPayments.Add(schedualedPayment);
 				floatingDate = nextEndDate.Add(new TimeSpan(1, 0, 0, 0));
 			} while (floatingDate < endDate);
+
+			return schedualedPayments;
+		}
+
+        public IEnumerable<SchedualedPayment> GenerateWeeklySchedualedPayments(DateTime startDate, DateTime endDate, double weeklyRent)
+		{
+            if (startDate > endDate)
+            {
+                throw new Exception("enddate can not be before startdate");
+			}
+
+            List<SchedualedPayment> schedualedPayments = new List<SchedualedPayment>();
+
+            DateTime nextStart = startDate;
+
+            do
+			{
+				var endOfWeek = smallestDate(nextStart + TimeSpan.FromDays(6), endDate);
+				SchedualedPayment schedualedPayment = new SchedualedPayment(nextStart, endOfWeek, calculateWeeklyRent(nextStart, endOfWeek, weeklyRent));
+				schedualedPayments.Add(schedualedPayment);
+				nextStart = endDate + TimeSpan.FromDays(1);
+			} while (nextStart < endDate);
 
 			return schedualedPayments;
 		}
@@ -34,17 +56,29 @@ namespace AP.SchedualedPayments.Services
 			return dates.Min();
 		}
 
-		private double calculateRent(DateTime startDate, DateTime endDate, double monthlyRent)
+		private double calculateMonthlyRent(DateTime startDate, DateTime endDate, double monthlyRent)
 		{
 			if (startDate.Year != endDate.Year || startDate.Month != endDate.Month)
 			{
-				throw new Exception();
+				throw new Exception("start date and end date must be within the same month");
 			}
 
 			int daysInMonth = DateTime.DaysInMonth(startDate.Year, startDate.Month);
 			int days = (endDate - startDate).Add(new TimeSpan(1, 0, 0, 0)).Days;
 			return monthlyRent * days / daysInMonth;
 		}
+
+        private double calculateWeeklyRent(DateTime startDate, DateTime endDate, double weeklyRent)
+        {
+			int days = (endDate - startDate).Days + 1;
+
+            if (days > 7)
+			{
+				throw new Exception("days can't be greater than 7");
+			}
+
+			return weeklyRent * days / 7;
+        }
     }
 
     public static class Extensions
