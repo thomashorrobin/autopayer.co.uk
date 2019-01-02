@@ -9,7 +9,7 @@ function addAllIndividualsReducer(state, action) {
 function addOrUpdateIndividualReducer(state, action) {
     const { id, individual } = action.payload
 
-    if (state.some(i => i.id === id)) {
+    if (state.indexOf(i => i.id === id) > -1) {
         const x = state.findIndex(i => i.id === id);
         state[x] = individual;
     } else {
@@ -21,7 +21,8 @@ function addOrUpdateIndividualReducer(state, action) {
 
 export const individualsReducer = createReducer([], {
     ADD_ALL_INDIVIDUALS: addAllIndividualsReducer,
-    ADD_OR_UPDATE_INDIVIDUAL: addOrUpdateIndividualReducer
+    ADD_OR_UPDATE_INDIVIDUAL: addOrUpdateIndividualReducer,
+    UPDATE_INDIVIDUAL: addOrUpdateIndividualReducer
   })
 
 export const ADD_ALL_INDIVIDUALS = 'ADD_ALL_INDIVIDUALS';

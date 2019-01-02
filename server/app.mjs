@@ -14,6 +14,7 @@ const GET_ALL_DATA = 'GET_ALL_DATA';
 const ADD_ALL_INDIVIDUALS = 'ADD_ALL_INDIVIDUALS';
 const ADD_ALL_LEASES = 'ADD_ALL_LEASES';
 const ADD_ALL_ADDRESSES = 'ADD_ALL_ADDRESSES';
+const UPDATE_INDIVIDUAL = 'UPDATE_INDIVIDUAL';
 
 async function processAction(action, ws) {
   const { type, payload } = action;
@@ -24,9 +25,27 @@ async function processAction(action, ws) {
         ws.send(JSON.stringify(createLeases(data.leases)));
         ws.send(JSON.stringify(createAddresses(data.addresses)));
       break;
-  
+    case UPDATE_INDIVIDUAL:
+      console.log('got here');
+      console.log(wss.clients.size);
+      wss.clients.forEach(function each(client) {
+        if (client !== ws && client.readyState === WebSocket.OPEN) {
+          client.send(JSON.stringify(createUpdateIndividual(payload)));
+        }
+      });
     default:
       break;
+  }
+}
+
+
+function createUpdateIndividual(individual) {
+  return {
+    type: UPDATE_INDIVIDUAL,
+    id: individual.id,
+    payload: {
+      individual
+    }
   }
 }
 
