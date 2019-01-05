@@ -13,7 +13,8 @@ export async function generateData() {
                     tenents: ['66085a23-634d-4e0e-8d6a-6dbf32a784de'],
                     startDate: new Date(2018, 11, 6), 
                     amount: 500, 
-                    schedualedPayments: null,
+                    frequency: 'monthly',
+                    schedualedPayments: [],
                     endDate: new Date(2019, 11, 6)
                 });
     leases.push({
@@ -23,7 +24,8 @@ export async function generateData() {
                     tenents: ['66085a23-634d-4e0e-8d6a-6dbf32a784de', '8e57e566-6a3d-4b00-9964-08f809242ed3'],
                     startDate: new Date(2019, 4, 13), 
                     amount: 210, 
-                    schedualedPayments: null,
+                    frequency: 'weekly',
+                    schedualedPayments: [],
                     endDate: new Date(2019, 11, 6)
                 });
     return {

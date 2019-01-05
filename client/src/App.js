@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     const individuals = this.props.individuals.map(i => <li key={i.id}>{ i.firstName }</li>);
     const addresses = this.props.addresses.map(i => <li key={i.id}>{ i.address }</li>);
-    const leases = this.props.leases.map(i => <li key={i.id}>{ i.amount }</li>);
+    const leases = this.props.leases.map(i => <li key={i.id}>{ i.schedualedPayments.length }</li>);
     return (
       <div className="App">
         <ul>

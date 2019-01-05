@@ -2,6 +2,7 @@ import { createReducer } from 'redux-starter-kit';
 
 function addAllLeasesReducer(state, action) {
     const { leases } = action.payload;
+    leases.forEach(lease => window.sendToSocket(requestSchedualedPaymentsFoeLease(lease)));
     return state.concat(leases);
 }
 
@@ -16,9 +17,22 @@ function addOrUpdateLeasesReducer(state, action) {
     }
 }
 
+const REQUEST_SCHEDUALED_PAYMENTS = 'REQUEST_SCHEDUALED_PAYMENTS';
+export const ADD_SCHEDUALED_PAYMENTS_TO_LEASE = 'ADD_SCHEDUALED_PAYMENTS_TO_LEASE';
+
+function addSchedualedPaymentsToLeaseReducer(state, action) {
+    const i = state.findIndex(l => l.id === action.id);
+    let lease = state.find(l => l.id === action.id);
+    lease.schedualedPayments = action.payload;
+    state[i] = lease;
+    console.log(state);
+    return state;
+}
+
 export const leasesReducer = createReducer([], {
     ADD_ALL_LEASES: addAllLeasesReducer,
-    ADD_OR_UPDATE_LEASE: addOrUpdateLeasesReducer
+    ADD_OR_UPDATE_LEASE: addOrUpdateLeasesReducer,
+    ADD_SCHEDUALED_PAYMENTS_TO_LEASE: addSchedualedPaymentsToLeaseReducer
   })
 
 export const ADD_ALL_LEASES = 'ADD_ALL_LEASES';
@@ -30,5 +44,12 @@ export const addAllLeases = leases => {
         payload: {
             leases
         }
+    }
+}
+
+export const requestSchedualedPaymentsFoeLease = lease => {
+    return {
+        type: REQUEST_SCHEDUALED_PAYMENTS,
+        payload: lease
     }
 }
