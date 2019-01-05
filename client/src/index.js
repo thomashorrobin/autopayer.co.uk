@@ -3,19 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { configureStore } from 'redux-starter-kit'
+import { configureStore, getDefaultMiddleware } from 'redux-starter-kit'
 import { addressesReducer } from "./Addresses";
 import { individualsReducer } from "./Individuals";
 import { leasesReducer } from "./Leases";
 import { Provider } from 'react-redux';
 import { connectSocket } from "./WebSocketManager";
+import logger from 'redux-logger'
+
+const middleware = [...getDefaultMiddleware(), logger]
 
 let store = configureStore({
     reducer: {
         addresses: addressesReducer,
         leases: leasesReducer,
         individuals: individualsReducer
-    }
+    },
+    middleware
 });
 
 connectSocket(store);
