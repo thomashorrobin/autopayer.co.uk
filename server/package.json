@@ -1,6 +1,7 @@
 {
     "scripts": {
-        "start": "nodemon --experimental-modules app.mjs"
+        "start": "nodemon --experimental-modules app.mjs",
+        "prod": "node --experimental-modules app.mjs"
     },
     "dependencies": {
         "node-fetch": "^2.3.0",
