@@ -6,6 +6,7 @@ export const connectSocket = store => {
     ws.onopen = () => {
       ws.send(JSON.stringify({ type: GET_ALL_DATA }));
     }
+    return action => ws.send(JSON.stringify(action));
 }
 
 const GET_ALL_DATA = 'GET_ALL_DATA';

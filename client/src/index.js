@@ -22,7 +22,7 @@ let store = configureStore({
     middleware
 });
 
-connectSocket(store);
+window.sendToSocket = connectSocket(store);
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 
