@@ -1,7 +1,3 @@
-import { addAllIndividuals } from "./Individuals";
-import { addAllAddress } from "./Addresses";
-import { addAllLeases } from "./Leases";
-
 export const connectSocket = store => {
     let ws = new WebSocket('ws://localhost:8080');
     ws.onmessage = m => {
