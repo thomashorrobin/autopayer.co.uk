@@ -2,8 +2,8 @@ version: '3.5'
 
 services:
 
-  sample-app:
-    container_name: sample-app
+  sample-app-client:
+    container_name: sample-app-client
     build:
       context: ./client
       dockerfile: Dockerfile
