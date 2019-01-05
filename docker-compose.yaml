@@ -1,0 +1,23 @@
+version: '3.5'
+
+services:
+
+  sample-app-client:
+    container_name: sample-app-client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - '3010:80'
+    environment:
+      - NODE_ENV=development
+
+  sample-app-server:
+    container_name: sample-app-server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - '8080:8080'
+    environment:
+      - NODE_ENV=development
