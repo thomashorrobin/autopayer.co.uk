@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 
 export const generateSchedualledMonthlyPayments = leaseAggreement => {
         return new Promise((resolve, reject) => {
-            fetch('http://localhost:5000/api/schedualedpaymentsmonthly', {
+            fetch('http://sample-app-schedualed-payments:80/api/schedualedpaymentsmonthly', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(leaseAggreement)
@@ -16,7 +16,7 @@ export const generateSchedualledMonthlyPayments = leaseAggreement => {
 
 export const generateSchedualledWeeklyPayments = leaseAggreement => {
     return new Promise((resolve, reject) => {
-        fetch('http://localhost:5000/api/schedualedpaymentsweekly', {
+        fetch('http://sample-app-schedualed-payments:80/api/schedualedpaymentsweekly', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(leaseAggreement)

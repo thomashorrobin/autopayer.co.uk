@@ -21,3 +21,11 @@ services:
       - '8080:8080'
     environment:
       - NODE_ENV=production
+
+  sample-app-schedualed-payments:
+    container_name: sample-app-schedualed-payments
+    build:
+      context: ./AP.SchedualedPayments
+      dockerfile: Dockerfile
+    ports:
+      - '5000:80'
