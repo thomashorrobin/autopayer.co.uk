@@ -25,7 +25,6 @@ function addSchedualedPaymentsToLeaseReducer(state, action) {
     let lease = state.find(l => l.id === action.id);
     lease.schedualedPayments = action.payload;
     state[i] = lease;
-    console.log(state);
     return state;
 }
 
