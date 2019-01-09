@@ -8,7 +8,7 @@ class App extends Component {
     const individuals = this.props.individuals.map(i => <li key={i.id}>{ i.firstName }</li>);
     const addresses = this.props.addresses.map(i => <li key={i.id}>{ i.address }</li>);
     const leases = this.props.leases.map(i => <li key={i.id}>{ i.schedualedPayments.length }</li>);
-    const grids = this.props.leases.filter(l => l.schedualedPayments.length > 0).map(l => <SevenColumnCalendar key={ l.id } schedualedPayments={l.schedualedPayments} />);
+    const grids = this.props.leases.filter(l => l.schedualedPayments.length > 0).map(l => <SevenColumnCalendar key={ l.id } lease={l} />);
     return (
       <div className="App">
         <ul>
