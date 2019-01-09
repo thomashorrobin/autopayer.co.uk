@@ -20,7 +20,7 @@ class App extends Component {
         <ul>
           { leases }
         </ul>
-        <div>
+        <div className="sevenDayCalendarContainer">
           {grids}
         </div>
       </div>
