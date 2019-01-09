@@ -12,9 +12,8 @@ export const SevenColumnCalendar = props => {
     const { lease } = props;
     const { schedualedPayments } = lease;
     if (schedualedPayments.length === 0) return <></> 
-    const leaseStartDate = schedualedPayments[0].startDate;
-    const leaseEndDate = schedualedPayments[schedualedPayments.length - 1].startDate;
-    const heightOfCalendar = Math.abs(differenceInDays(startOfWeek(leaseStartDate), endOfWeek(leaseEndDate)) / 7 ) * gridConfig.squareSize + gridConfig.headerFont + 7;
+    const heightOfCalendar = Math.abs(differenceInDays(startOfWeek(lease.startDate), endOfWeek(lease.endDate)) / 7 ) * gridConfig.squareSize + gridConfig.headerFont + 7;
+
     return (
         <div className="sevenDayCalendar">
             <small>{ lease.id }</small>
@@ -23,7 +22,7 @@ export const SevenColumnCalendar = props => {
             <p>{ `end date: ${format(lease.endDate, 'YYYY-MM-DD')}` }</p>
             <svg width={ `${ gridConfig.squareSize * 7 }px` } height={ `${ heightOfCalendar }px` }>
                 <WeekDateDisplay squareSize={gridConfig.squareSize} headerFontSize={gridConfig.headerFont} />
-                <Grid gridConfig={gridConfig} leaseStartDate={leaseStartDate} leaseEndDate={leaseEndDate} />
+                <Grid gridConfig={gridConfig} leaseStartDate={lease.startDate} leaseEndDate={lease.endDate} />
             </svg>
         </div>
     )
