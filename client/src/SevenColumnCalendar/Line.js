@@ -4,7 +4,7 @@ import { startOfWeek, min, max, addDays, endOfWeek, differenceInDays } from "dat
 export function SchedualedPayment(schedualedPayment, gridConfig, firstday) {
     let paymentSplits = [];
     let workingStartOfTheWeek = startOfWeek(schedualedPayment.startDate);
-    var next_y = gridConfig.squareSize * Math.abs(differenceInDays(firstday, workingStartOfTheWeek)) / 7 + gridConfig.squareSize;
+    var next_y = gridConfig.squareSize * Math.abs(differenceInDays(firstday, workingStartOfTheWeek)) / 7 + gridConfig.squareSize -2;
     do {
         let x_start = differenceInDays(max(workingStartOfTheWeek, schedualedPayment.startDate), workingStartOfTheWeek) * gridConfig.squareSize + gridConfig.squareSize / 2;
         let x_end = differenceInDays(min(endOfWeek(workingStartOfTheWeek), schedualedPayment.endDate), workingStartOfTheWeek) * gridConfig.squareSize + gridConfig.squareSize / 2;
