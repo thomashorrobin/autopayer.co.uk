@@ -45,7 +45,7 @@ namespace AP.SchedualedPayments.Services
 				var endOfWeek = smallestDate(nextStart + TimeSpan.FromDays(6), endDate);
 				SchedualedPayment schedualedPayment = new SchedualedPayment(nextStart, endOfWeek, calculateWeeklyRent(nextStart, endOfWeek, weeklyRent));
 				schedualedPayments.Add(schedualedPayment);
-				nextStart = endDate + TimeSpan.FromDays(1);
+				nextStart = nextStart + TimeSpan.FromDays(7);
 			} while (nextStart < endDate);
 
 			return schedualedPayments;
