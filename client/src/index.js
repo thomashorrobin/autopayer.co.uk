@@ -4,9 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { configureStore, getDefaultMiddleware } from 'redux-starter-kit'
-import { addressesReducer } from "./state/Addresses";
-import { individualsReducer } from "./state/Individuals";
-import { leasesReducer } from "./state/Leases";
+import { rootReducers } from "./state";
 import { Provider } from 'react-redux';
 import { connectSocket } from "./WebSocketManager";
 import logger from 'redux-logger'
@@ -14,11 +12,7 @@ import logger from 'redux-logger'
 const middleware = [...getDefaultMiddleware(), logger]
 
 let store = configureStore({
-    reducer: {
-        addresses: addressesReducer,
-        leases: leasesReducer,
-        individuals: individualsReducer
-    },
+    reducer: rootReducers,
     middleware
 });
 
