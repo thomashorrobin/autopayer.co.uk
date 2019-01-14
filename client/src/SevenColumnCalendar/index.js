@@ -18,13 +18,16 @@ export const SevenColumnCalendar = props => {
     schedualedPayments.forEach(sp => {
         schedualedPaymentSVGs.push(SchedualedPayment(sp, gridConfig, startOfWeek(lease.startDate)));
     });
-
+    const address = lease.address ? lease.address.address : 'address not loaded'
+    const postCode = lease.address ? lease.address.postCode : 'address not loaded'
     return (
         <div className="sevenDayCalendar">
             <small>{ lease.id }</small>
             <p>{ lease.frequency }</p>
             <p>{ `start date: ${format(lease.startDate, 'YYYY-MM-DD')}` }</p>
             <p>{ `end date: ${format(lease.endDate, 'YYYY-MM-DD')}` }</p>
+            <p>{ `address: ${ address }` }</p>
+            <p>{ `post code: ${ postCode }` }</p>
             <svg width={ `${ gridConfig.squareSize * 7 }px` } height={ `${ heightOfCalendar }px` }>
                 <WeekDateDisplay squareSize={gridConfig.squareSize} headerFontSize={gridConfig.headerFont} />
                 <Grid gridConfig={gridConfig} leaseStartDate={lease.startDate} leaseEndDate={lease.endDate} />
