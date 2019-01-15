@@ -6,6 +6,7 @@ export function SchedualedPayment(schedualedPayment, gridConfig, firstday) {
     let workingStartOfTheWeek = startOfWeek(schedualedPayment.startDate);
     var next_y = calcY(firstday, gridConfig, workingStartOfTheWeek);
     do {
+        paymentSplits.push(<circle stroke="red" fill="purple" r="8" cx={calcX(gridConfig, schedualedPayment.dueDate, workingStartOfTheWeek)} cy={next_y} />);
         paymentSplits.push(<line key={next_y} stroke="red" strokeWidth="8" x1={calcX(gridConfig, schedualedPayment.startDate, workingStartOfTheWeek)} x2={calcX(gridConfig, schedualedPayment.endDate, workingStartOfTheWeek)} y1={next_y} y2={next_y} strokeLinecap="round" />);
         workingStartOfTheWeek = addDays(workingStartOfTheWeek, 7);
         next_y = gridConfig.squareSize + next_y;
