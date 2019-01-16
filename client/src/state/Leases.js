@@ -21,6 +21,7 @@ const REQUEST_SCHEDUALED_PAYMENTS = 'REQUEST_SCHEDUALED_PAYMENTS';
 export const ADD_SCHEDUALED_PAYMENTS_TO_LEASE = 'ADD_SCHEDUALED_PAYMENTS_TO_LEASE';
 
 function addSchedualedPaymentsToLeaseReducer(state, action) {
+    console.table(action.payload);
     const i = state.findIndex(l => l.id === action.id);
     let lease = state.find(l => l.id === action.id);
     lease.schedualedPayments = action.payload;
