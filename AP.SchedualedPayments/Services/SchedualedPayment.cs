@@ -10,6 +10,7 @@ namespace AP.SchedualedPayments.Services
 			this.PartDateEnd = false;
 			this.AmountDue = amount;
 			this.DueDate = endDate;
+			this.Id = Guid.NewGuid();
 		}
 
 		public DateTime StartDate
@@ -47,5 +48,7 @@ namespace AP.SchedualedPayments.Services
 			get;
 			set;
 		}
+
+		public Guid Id { get; set; }
 	}
 }
