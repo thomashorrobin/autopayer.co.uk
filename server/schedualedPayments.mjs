@@ -1,9 +1,11 @@
 import fetch from "node-fetch";
 
+const host = 'http://localhost:5000';
+
 export const generateSchedualledMonthlyPayments = leaseAggreement => {
     let payload = Object.assign({}, leaseAggreement, { monthlyAmount: leaseAggreement.amount });
     return new Promise((resolve, reject) => {
-        fetch('http://sample-app-schedualed-payments:80/api/schedualedpaymentsmonthly', {
+        fetch(`${ host }/api/schedualedpaymentsmonthly`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(payload)
@@ -18,7 +20,7 @@ export const generateSchedualledMonthlyPayments = leaseAggreement => {
 export const generateSchedualledWeeklyPayments = leaseAggreement => {
     let payload = Object.assign({}, leaseAggreement, { weeklyAmount: leaseAggreement.amount });
     return new Promise((resolve, reject) => {
-        fetch('http://sample-app-schedualed-payments:80/api/schedualedpaymentsweekly', {
+        fetch(`${ host }/api/schedualedpaymentsweekly`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(payload)
