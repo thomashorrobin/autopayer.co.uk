@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_08_135443) do
+ActiveRecord::Schema.define(version: 2019_04_08_140252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 2019_04_08_135443) do
     t.string "post_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "lease_notes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "note"
+    t.uuid "user_id"
+    t.boolean "private"
+    t.uuid "lease_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lease_id"], name: "index_lease_notes_on_lease_id"
+    t.index ["user_id"], name: "index_lease_notes_on_user_id"
   end
 
   create_table "leases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -51,6 +62,8 @@ ActiveRecord::Schema.define(version: 2019_04_08_135443) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "lease_notes", "leases"
+  add_foreign_key "lease_notes", "users"
   add_foreign_key "leases", "addresses"
   add_foreign_key "leases", "payment_frequencies"
 end

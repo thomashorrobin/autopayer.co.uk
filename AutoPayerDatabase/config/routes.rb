@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :lease_notes
   resources :users
   resources :leases
   resources :payment_frequencies

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @lease_note.note %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @lease_note.user %>
+</p>
+
+<p>
+  <strong>Private:</strong>
+  <%= @lease_note.private %>
+</p>
+
+<p>
+  <strong>Lease:</strong>
+  <%= @lease_note.lease %>
+</p>
+
+<%= link_to 'Edit', edit_lease_note_path(@lease_note) %> |
+<%= link_to 'Back', lease_notes_path %>
