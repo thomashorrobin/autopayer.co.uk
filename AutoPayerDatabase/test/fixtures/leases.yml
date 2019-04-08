@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  address: one
+  payment_frequency: one
+  rent: 1
+  start_date: 2019-04-08
+  end_date: 2019-04-08
+  name: MyString
+
+two:
+  address: two
+  payment_frequency: two
+  rent: 1
+  start_date: 2019-04-08
+  end_date: 2019-04-08
+  name: MyString

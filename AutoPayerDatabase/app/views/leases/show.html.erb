@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @lease.address %>
+</p>
+
+<p>
+  <strong>Payment frequency:</strong>
+  <%= @lease.payment_frequency %>
+</p>
+
+<p>
+  <strong>Rent:</strong>
+  <%= @lease.rent %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @lease.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @lease.end_date %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @lease.name %>
+</p>
+
+<%= link_to 'Edit', edit_lease_path(@lease) %> |
+<%= link_to 'Back', leases_path %>
