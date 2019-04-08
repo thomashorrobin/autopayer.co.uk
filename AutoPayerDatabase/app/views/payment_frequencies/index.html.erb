@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Payment Frequencies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @payment_frequencies.each do |payment_frequency| %>
+      <tr>
+        <td><%= payment_frequency.description %></td>
+        <td><%= link_to 'Show', payment_frequency %></td>
+        <td><%= link_to 'Edit', edit_payment_frequency_path(payment_frequency) %></td>
+        <td><%= link_to 'Destroy', payment_frequency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Payment Frequency', new_payment_frequency_path %>

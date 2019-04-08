@@ -1,0 +1,2 @@
+class PaymentFrequency < ApplicationRecord
+end
