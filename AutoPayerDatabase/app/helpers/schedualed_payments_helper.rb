@@ -1,0 +1,2 @@
+module SchedualedPaymentsHelper
+end

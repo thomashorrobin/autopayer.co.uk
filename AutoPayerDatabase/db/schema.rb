@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_08_140252) do
+ActiveRecord::Schema.define(version: 2019_04_08_142234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -53,6 +53,17 @@ ActiveRecord::Schema.define(version: 2019_04_08_140252) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "schedualed_payments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.date "charge_period_start_date"
+    t.date "charge_period_end_date"
+    t.integer "amount_due"
+    t.date "due_date"
+    t.uuid "lease_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lease_id"], name: "index_schedualed_payments_on_lease_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -66,4 +77,5 @@ ActiveRecord::Schema.define(version: 2019_04_08_140252) do
   add_foreign_key "lease_notes", "users"
   add_foreign_key "leases", "addresses"
   add_foreign_key "leases", "payment_frequencies"
+  add_foreign_key "schedualed_payments", "leases"
 end
