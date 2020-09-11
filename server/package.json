@@ -4,7 +4,7 @@
         "prod": "node --experimental-modules app.mjs"
     },
     "dependencies": {
-        "node-fetch": "^2.3.0",
+        "node-fetch": "^2.6.1",
         "ws": "^6.1.2"
     },
     "devDependencies": {
